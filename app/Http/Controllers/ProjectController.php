@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
+use App\Models\Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -28,7 +29,9 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('project.create');
+        $types = Type::orderBy('name', 'asc')->get();
+
+        return view('project.create', compact('types'));
     }
 
     /**
@@ -39,6 +42,7 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
+        dd($request);
         $data = $request->validated();
         $data['slug'] = Str::slug($data['title']);
         $project = Project::create($data); //premdo dal model
@@ -64,7 +68,8 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        return view('project.edit', compact('project'));
+        $types = Type::orderBy('name', 'asc')->get();
+        return view('project.edit', compact('project','types'));
     }
 
     /**

@@ -28,7 +28,8 @@ class StoreProjectRequest extends FormRequest
             'title'=>'required|max:30|unique:projects,title', //per rendere titile unica
             'customer'=>'nullable|max:30',
             'description'=>'required|min:10',
-            'url'=>'required|url|max:220'
+            'url'=>'required|url|max:220',
+            'type_id' => 'nullable|exists:types,id'
         ];
     }
 }

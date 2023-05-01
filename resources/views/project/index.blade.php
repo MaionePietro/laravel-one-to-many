@@ -12,6 +12,7 @@
                         <h5 class="card-title">{{$project->title}}</h5>
                         <p class="card-text">{{$project->customer}}</p>
                         <p class="card-text">{{$project->description}}</p>
+                        <p class="card-text">{{$project->type ? $project->type->name  : '-'}}</p>
                         <a href="{{$project->url}}"></a>
                         <div class="d-flex">
                             <a class="btn" href="{{ route('projects.show',$project) }}">VEDI</a>

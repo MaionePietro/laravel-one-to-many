@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::table('projects', function (Blueprint $table) {
              // 1. aggiungendo la colonna
-             $table->unsignedBigInteger('project_id')->nullable()->after('id');
+             $table->unsignedBigInteger('type_id')->nullable()->after('id');
 
              // 2. creando la relazione tra chiave esterna e chiave primaria
-             $table->foreign('project_id')->references('id')->on('projects');
+             $table->foreign('type_id')->references('id')->on('types');
         });
     }
 
@@ -32,10 +32,10 @@ return new class extends Migration
         Schema::table('projects', function (Blueprint $table) {
             // 2. droppiamo la realzione
 
-            $table->dropForeign(['project_id']);
+            $table->dropForeign(['type_id']);
 
             // 1. droppare la colonna
-            $table->dropColumn('project_id');
+            $table->dropColumn('type_id');
         });
     }
 };
